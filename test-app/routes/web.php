@@ -4,8 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ToppageController;
+use App\Http\Controllers\MessageController;
 
-Route::get('/', function () {
+Route::get('/w', function () {
     return view('Welcome');
 });
 
@@ -36,4 +37,10 @@ require __DIR__.'/auth.php';
 
 Route::get('/toppage',[ToppageController::class, 'index'])->name('toppage');
 Route::post('/posts',[Toppagecontroller::class, 'store'])->name('post.store');
+Route::delete('/posts/{id}', [ToppageController::class, 'destroy'])->name('posts.destroy');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::get('/messages/{user}', [MessageController::class, 'show'])->name('messages.show');
+    Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
+});

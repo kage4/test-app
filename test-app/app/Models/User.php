@@ -50,4 +50,10 @@ class User extends Authenticatable
     public function timelines(){
         return $this->hasMany(Timeline::class);
     }
+    public function sentMessages(){
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+    public function receivedMessages(){
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
 }

@@ -11,7 +11,7 @@ class Timeline extends Model
 
     protected $table = 'timelines';
 
-    protected $fillable = ['body','user_id'];
+    protected $fillable = ['body','user_id' , 'image_path'];
 
 
 
